@@ -5,7 +5,7 @@ A sophisticated calculator application that leverages OpenAI's language model wi
 ## 🌟 Features
 
 - **Natural Language Processing**: Ask questions in plain English like "What's 25 plus 17?" or "Calculate sine of π/2"
-- **16 Mathematical Tools**: Basic operations, trigonometry, logarithms, and more
+- **26 Mathematical Tools**: Basic operations, trigonometry, logarithms, and statistical functions
 - **MCP Server Architecture**: Clean separation of concerns with dedicated calculator tools
 - **OpenAI Integration**: Uses OpenAI's GPT-4 Mini model to interpret queries accurately
 - **Streamlit UI**: User-friendly web interface for entering queries and viewing results
@@ -39,6 +39,18 @@ A sophisticated calculator application that leverages OpenAI's language model wi
 ### Rounding Functions
 - `ceiling(a)` - Round up
 - `floor(a)` - Round down
+
+### Statistical Functions
+- `mean(numbers)` - Calculate arithmetic mean (average) of a list of numbers
+- `median(numbers)` - Calculate median (middle value) of a list of numbers
+- `mode(numbers)` - Calculate mode (most frequent value) of a list of numbers
+- `std_dev(numbers)` - Calculate standard deviation of a list of numbers
+- `variance(numbers)` - Calculate variance of a list of numbers
+- `range(numbers)` - Calculate range (max - min) of a list of numbers
+- `sum(numbers)` - Calculate sum of a list of numbers
+- `count(numbers)` - Count the number of elements in a list
+- `min(numbers)` - Find minimum value in a list of numbers
+- `max(numbers)` - Find maximum value in a list of numbers
 
 ## 🚀 Setup & Installation
 
@@ -121,6 +133,9 @@ The application will open in your default browser at `http://localhost:8501`
 - "What's 5 factorial?"
 - "Log base 10 of 100"
 - "Multiply 123 by 456"
+- "Calculate the mean of 10, 20, 30, 40, 50"
+- "Find the median of 1, 3, 5, 7, 9"
+- "What's the standard deviation of 2, 4, 6, 8, 10?"
 
 ## 🔧 Architecture
 
@@ -128,7 +143,7 @@ The application will open in your default browser at `http://localhost:8501`
 - **CalculatorServer**: Main class that implements all calculator operations
 - **get_tools()**: Returns list of available tools with JSON schemas
 - **execute_tool()**: Executes any calculator operation safely
-- 16 static methods for different mathematical operations
+- 26 static methods for different mathematical operations (16 basic + 10 statistical)
 
 ### OpenAI Integration (`integration/openai_integration.py`)
 - **CalculatorAI**: Main integration class
@@ -151,6 +166,8 @@ The application includes robust error handling for:
 - Negative square roots
 - Invalid logarithm inputs
 - Negative factorials
+- Empty lists for statistical functions
+- Insufficient data for variance/standard deviation
 - API failures
 - Invalid tool usage
 

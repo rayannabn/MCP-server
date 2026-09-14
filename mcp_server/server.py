@@ -5,6 +5,7 @@ Provides tools for basic and advanced mathematical operations
 
 import json
 import math
+from collections import Counter
 from typing import Any
 
 
@@ -29,6 +30,16 @@ class CalculatorServer:
             "ln": self.ln,
             "ceiling": self.ceiling,
             "floor": self.floor,
+            "mean": self.mean,
+            "median": self.median,
+            "mode": self.mode,
+            "std_dev": self.std_dev,
+            "variance": self.variance,
+            "range": self.range,
+            "sum": self.sum,
+            "count": self.count,
+            "min": self.min,
+            "max": self.max,
         }
 
     def get_tools(self) -> list[dict[str, Any]]:
@@ -216,6 +227,116 @@ class CalculatorServer:
                     "required": ["a"],
                 },
             },
+            {
+                "name": "mean",
+                "description": "Calculate arithmetic mean (average) of a list of numbers",
+                "inputSchema": {
+                    "type": "object",
+                    "properties": {
+                        "numbers": {"type": "array", "items": {"type": "number"}, "description": "List of numbers"},
+                    },
+                    "required": ["numbers"],
+                },
+            },
+            {
+                "name": "median",
+                "description": "Calculate median (middle value) of a list of numbers",
+                "inputSchema": {
+                    "type": "object",
+                    "properties": {
+                        "numbers": {"type": "array", "items": {"type": "number"}, "description": "List of numbers"},
+                    },
+                    "required": ["numbers"],
+                },
+            },
+            {
+                "name": "mode",
+                "description": "Calculate mode (most frequent value) of a list of numbers",
+                "inputSchema": {
+                    "type": "object",
+                    "properties": {
+                        "numbers": {"type": "array", "items": {"type": "number"}, "description": "List of numbers"},
+                    },
+                    "required": ["numbers"],
+                },
+            },
+            {
+                "name": "std_dev",
+                "description": "Calculate standard deviation of a list of numbers",
+                "inputSchema": {
+                    "type": "object",
+                    "properties": {
+                        "numbers": {"type": "array", "items": {"type": "number"}, "description": "List of numbers"},
+                    },
+                    "required": ["numbers"],
+                },
+            },
+            {
+                "name": "variance",
+                "description": "Calculate variance of a list of numbers",
+                "inputSchema": {
+                    "type": "object",
+                    "properties": {
+                        "numbers": {"type": "array", "items": {"type": "number"}, "description": "List of numbers"},
+                    },
+                    "required": ["numbers"],
+                },
+            },
+            {
+                "name": "range",
+                "description": "Calculate range (max - min) of a list of numbers",
+                "inputSchema": {
+                    "type": "object",
+                    "properties": {
+                        "numbers": {"type": "array", "items": {"type": "number"}, "description": "List of numbers"},
+                    },
+                    "required": ["numbers"],
+                },
+            },
+            {
+                "name": "sum",
+                "description": "Calculate sum of a list of numbers",
+                "inputSchema": {
+                    "type": "object",
+                    "properties": {
+                        "numbers": {"type": "array", "items": {"type": "number"}, "description": "List of numbers"},
+                    },
+                    "required": ["numbers"],
+                },
+            },
+            {
+                "name": "count",
+                "description": "Count the number of elements in a list",
+                "inputSchema": {
+                    "type": "object",
+                    "properties": {
+                        "numbers": {"type": "array", "items": {"type": "number"}, "description": "List of numbers"},
+                    },
+                    "required": ["numbers"],
+                },
+            },
+            {
+                "name": "min",
+                "description": "Find minimum value in a list of numbers",
+                "inputSchema": {
+                    "type": "object",
+                    "properties": {
+                        "numbers": {"type": "array", "items": {"type": "number"}, "description": "List of numbers"},
+                    },
+                    "required": ["numbers"],
+                },
+            },
+            {
+                "name": "max",
+                "description": "Find maximum value in a list of numbers",
+                "inputSchema": {
+                    "type": "object",
+                    "properties": {
+                        "numbers": {"type": "array", "items": {"type": "number"}, "description": "List of numbers"},
+                    },
+                    "required": ["numbers"],
+                },
+            },
         ]
 
     def execute_tool(self, tool_name: str, **kwargs) -> dict[str, Any]:
@@ -320,3 +441,87 @@ class CalculatorServer:
     def floor(a: float) -> int:
         """Get floor value"""
         return math.floor(a)
+
+    @staticmethod
+    def mean(numbers: list[float]) -> float:
+        """Calculate arithmetic mean (average)"""
+        if not numbers:
+            raise ValueError("Cannot calculate mean of empty list")
+        return sum(numbers) / len(numbers)
+
+    @staticmethod
+    def median(numbers: list[float]) -> float:
+        """Calculate median (middle value)"""
+        if not numbers:
+            raise ValueError("Cannot calculate median of empty list")
+        sorted_numbers = sorted(numbers)
+        n = len(sorted_numbers)
+        mid = n // 2
+        if n % 2 == 0:
+            return (sorted_numbers[mid - 1] + sorted_numbers[mid]) / 2
+        else:
+            return sorted_numbers[mid]
+
+    @staticmethod
+    def mode(numbers: list[float]) -> list[float]:
+        """Calculate mode (most frequent value(s))"""
+        if not numbers:
+            raise ValueError("Cannot calculate mode of empty list")
+        counts = Counter(numbers)
+        max_count = max(counts.values())
+        modes = [num for num, count in counts.items() if count == max_count]
+        return modes
+
+    @staticmethod
+    def std_dev(numbers: list[float]) -> float:
+        """Calculate standard deviation"""
+        if not numbers:
+            raise ValueError("Cannot calculate standard deviation of empty list")
+        if len(numbers) < 2:
+            raise ValueError("Need at least 2 numbers for standard deviation")
+        mean_val = sum(numbers) / len(numbers)
+        variance = sum((x - mean_val) ** 2 for x in numbers) / (len(numbers) - 1)
+        return math.sqrt(variance)
+
+    @staticmethod
+    def variance(numbers: list[float]) -> float:
+        """Calculate variance"""
+        if not numbers:
+            raise ValueError("Cannot calculate variance of empty list")
+        if len(numbers) < 2:
+            raise ValueError("Need at least 2 numbers for variance")
+        mean_val = sum(numbers) / len(numbers)
+        return sum((x - mean_val) ** 2 for x in numbers) / (len(numbers) - 1)
+
+    @staticmethod
+    def range(numbers: list[float]) -> float:
+        """Calculate range (max - min)"""
+        if not numbers:
+            raise ValueError("Cannot calculate range of empty list")
+        return max(numbers) - min(numbers)
+
+    @staticmethod
+    def sum(numbers: list[float]) -> float:
+        """Calculate sum of numbers"""
+        if not numbers:
+            raise ValueError("Cannot calculate sum of empty list")
+        return sum(numbers)
+
+    @staticmethod
+    def count(numbers: list[float]) -> int:
+        """Count the number of elements"""
+        return len(numbers)
+
+    @staticmethod
+    def min(numbers: list[float]) -> float:
+        """Find minimum value"""
+        if not numbers:
+            raise ValueError("Cannot find minimum of empty list")
+        return min(numbers)
+
+    @staticmethod
+    def max(numbers: list[float]) -> float:
+        """Find maximum value"""
+        if not numbers:
+            raise ValueError("Cannot find maximum of empty list")
+        return max(numbers)

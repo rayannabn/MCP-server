@@ -11,7 +11,7 @@
 ## 📦 WHAT WAS BUILT
 
 A complete, production-ready calculator application that combines:
-1. **MCP Server** with 16 mathematical tools
+1. **MCP Server** with 26 mathematical tools (16 basic + 10 statistical)
 2. **OpenAI Integration** to understand natural language
 3. **Streamlit Web UI** for user interaction
 4. **Comprehensive Documentation** and testing
@@ -44,7 +44,7 @@ MCP-server/
 ├── Core Implementation
 │   ├── mcp_server/
 │   │   ├── __init__.py
-│   │   └── server.py              # 16 calculator tools
+│   │   └── server.py              # 26 calculator tools (16 basic + 10 statistical)
 │   ├── integration/
 │   │   ├── __init__.py
 │   │   └── openai_integration.py  # OpenAI bridge
@@ -80,7 +80,7 @@ MCP-server/
 
 ### 1. MCP Calculator Server (`mcp_server/server.py`)
 - **Class**: `CalculatorServer`
-- **Tools**: 16 mathematical operations
+- **Tools**: 26 mathematical operations (16 basic + 10 statistical)
 - **Features**:
   - Safe execution with error handling
   - JSON schema tool definitions
@@ -93,6 +93,7 @@ Advanced:      power, square_root, percentage, absolute, factorial
 Trigonometric: sin, cos, tan
 Logarithmic:   log, ln
 Rounding:      ceiling, floor
+Statistical:   mean, median, mode, std_dev, variance, range, sum, count, min, max
 ```
 
 ### 2. OpenAI Integration (`integration/openai_integration.py`)
@@ -135,12 +136,13 @@ Rounding:      ceiling, floor
 - Extracts parameters automatically
 - Supports context awareness
 
-### ✅ 16 Calculator Tools
+### ✅ 26 Calculator Tools (16 Basic + 10 Statistical)
 - All basic arithmetic operations
 - Advanced mathematical functions
 - Trigonometric calculations
 - Logarithmic functions
 - Rounding operations
+- Statistical functions (mean, median, mode, std_dev, variance, range, sum, count, min, max)
 
 ### ✅ Error Handling
 - Division by zero
@@ -367,7 +369,7 @@ streamlit run ui/app.py --server.port 9000
 
 ## 📋 DEPLOYMENT CHECKLIST
 
-- [x] MCP Server implemented (16 tools)
+- [x] MCP Server implemented (26 tools: 16 basic + 10 statistical)
 - [x] OpenAI integration working
 - [x] Streamlit UI functional
 - [x] Error handling complete
@@ -406,7 +408,7 @@ pip install -r requirements.txt
 - **Code Files**: 5 Python modules
 - **Tests**: 2 test suites (all passing)
 - **Documentation**: 4 guide documents
-- **Calculator Tools**: 16 operations
+- **Calculator Tools**: 26 operations (16 basic + 10 statistical)
 - **API Endpoints**: 1 main integration
 - **Web Routes**: 5 (Streamlit pages)
 - **Lines of Code**: ~1000+ (excluding tests & docs)
@@ -484,7 +486,7 @@ pip list | grep -E "openai|streamlit"
 
 ✅ A fully functional AI calculator  
 ✅ Natural language query processing  
-✅ 16 mathematical tools ready to use  
+✅ 26 mathematical tools ready to use (16 basic + 10 statistical)  
 ✅ Professional web interface  
 ✅ Complete documentation  
 ✅ Ready for immediate deployment  

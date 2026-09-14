@@ -187,6 +187,18 @@ def display_tools_reference():
         **Rounding Functions:**
         - `ceiling(a)` - Round up
         - `floor(a)` - Round down
+        
+        **Statistical Functions:**
+        - `mean(numbers)` - Calculate arithmetic mean (average)
+        - `median(numbers)` - Calculate median (middle value)
+        - `mode(numbers)` - Calculate mode (most frequent value)
+        - `std_dev(numbers)` - Calculate standard deviation
+        - `variance(numbers)` - Calculate variance
+        - `range(numbers)` - Calculate range (max - min)
+        - `sum(numbers)` - Calculate sum of numbers
+        - `count(numbers)` - Count elements in list
+        - `min(numbers)` - Find minimum value
+        - `max(numbers)` - Find maximum value
         """)
 
 
